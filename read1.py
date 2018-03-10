@@ -1,4 +1,4 @@
-f1=open('data1.csv','wb')
+f1=open('data2.csv','wb')
 f1.write('Patient ID number,Registry ID,Marital Status at DX,Race/Ethnicity,NHIA Derived Hispanic Origin,Sex,Age at diagnosis,Year of Birth,'+
          'Sequence Number-Central,Month of diagnosis,Year of diagnosis,Primary Site,Laterality,Histology (92-00) ICD-O-2,Behavior (92-00) ICD-O-2,'+
          'Histologic Type ICD-O-3,Behavior Code ICD-O-3,Grade,Diagnostic Confirmation,Type of Reporting Source,EOD-Tumor Size,EOD-Extension,EOD-Extension Prost Path,'+
@@ -18,7 +18,7 @@ f1.write('Patient ID number,Registry ID,Marital Status at DX,Race/Ethnicity,NHIA
          'N value - based on AJCC 3rd (1988-2003),M value - based on AJCC 3rd (1988-2003),Total Number of In Situ/malignant Tumors for Patient,Total Number of Benign/Borderline Tumors for Patient,Radiation Recode,Radiation to Brain or CNS Recode (1988-1997),RX Summ-Surg/Rad Seq,Chemotherapy recode (Yes No/Unk)'+'\n')
 
 
-with open('RESPIR1.TXT','r') as f:
+with open('RESPIR2.TXT','r') as f:
     i=0
     for line in f.readlines():
         temp=""
