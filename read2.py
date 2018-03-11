@@ -26,32 +26,93 @@ def check(name):
     else:
         return name
 
-f1=open('datafinal.csv','wb')
+def checksurvival(n):
+    if '9999' in n:
+        return str(-1)
+    else:
+        return n
+
+def checkage(age):
+    if '999' in age:
+        return str(0)
+    else:
+        return age
+
+def noofprimaries(n):
+    if '99' in n:
+        return str(0)
+    else:
+        return n
+
+def checklymph(n):
+    if '999' in n:
+        return str(0)
+    else:
+        return n
+
+def checkstage(n):
+    if '99' in n:
+        return str(0)
+    else:
+        return n
+
+def checkrxsumm(n):
+    if '99' in n:
+        return 0
+    else:
+        return n
+
+def checktumour(n):
+    if '999' in n:
+        return str(0)
+    elif'888' in n:
+        return str(0)
+    else:
+        return n
+
+def checkseq(n):
+    if '99' in n:
+        return str(0)
+    else:
+        return n
+
+def checkhistology(n):
+    if '98' in n:
+        return str(0)
+    else:
+        return n
+
+f1=open('datamultiple.csv','wb')
 f2=open('data2.csv','r')
 lines=f2.readlines()[1:]
 
+tmp=0
 for x in lines:
+    if tmp==8000:
+        break
+    tmp+=1
     temp=[]
     x=x.split(',')
-    temp.append(check(x[6]))
+    temp.append(checksurvival(check(x[107])))
+    temp.append(checkage(check(x[6])))
     temp.append(check(x[17]))
     temp.append(check(x[135]))
-    temp.append(check(x[131]))
+    temp.append(noofprimaries(check(x[131])))
     temp.append(check(x[128]))
     temp.append(check(x[129]))
     temp.append(check(x[130]))
     temp.append(check(x[133]))
-    temp.append(check(x[113]))
+    temp.append(checkstage(check(x[113])))
     temp.append(check(x[11][-1]))
     temp.append(check(x[82]))
-    temp.append(check(x[8]))
-    temp.append(check(x[35]))
-    temp.append(check(x[71]))
-    temp.append(check(x[55]))
+    temp.append(checkseq(check(x[8])))
+    temp.append(checklymph(check(x[35]))[0])
+    temp.append(checkhistology(check(x[71])))
+    temp.append(checkrxsumm(check(x[55])))
     temp.append(check(x[54]))
     temp.append(check(x[48]))
-    temp.append(check(x[20]))
-    temp.append(check(x[107]))
+    temp.append(checktumour(check(x[20])))
+    #temp.append(checksurvival(check(x[107])))
     temp=','.join(temp) + '\n'
     f1.write(temp)
 
