@@ -19,101 +19,6 @@ DerivedSS1977 :49
 tumour size :21
 Survival Time : 108
 """
-
-def check(name):
-    if ' ' in name:
-        return str(0)
-    else:
-        return name
-
-def checksurvival(n):
-    if '9999' in n:
-        return str(-1)
-    else:
-        return n
-
-def checkage(age):
-    if '999' in age:
-        return str(0)
-    else:
-        return age
-
-def noofprimaries(n):
-    if '99' in n:
-        return str(0)
-    else:
-        return n
-
-def checklymph(n):
-    if '999' in n:
-        return str(0)
-    else:
-        return n
-
-def checkstage(n):
-    if '99' in n:
-        return str(0)
-    else:
-        return n
-
-def checkrxsumm(n):
-    if '99' in n:
-        return str(0)
-    else:
-        return n
-
-def checkrxlunsur(n):
-    if '9' in n:
-        return str(0)
-    else:
-        return n
-
-def checktumour(n):
-    if '999' in n:
-        return str(0)
-    elif'888' in n:
-        return str(0)
-    else:
-        return n
-
-def checkseq(n):
-    if '99' in n:
-        return str(0)
-    elif '88' in n:
-        return str(0)
-    else:
-        return n
-
-def checkhistology(n):
-    if '98' in n:
-        return str(0)
-    else:
-        return n
-
-def checkgrade(n):
-    if '9' in n:
-        return str(0)
-    else:
-        return n
-
-def checkradseq(n):
-    if '9' in n:
-        return str(0)
-    else:
-        return n
-
-def checkrad(n):
-    if '9' in n:
-        return str(0)
-    else:
-        return n
-
-def checkderivedss(n):
-    if '9' in n:
-        return str(0)
-    else:
-        return n
-
 f1=open('2004_2009.csv','wb')
 f2=open('data2.csv','r')
 lines=f2.readlines()[1:]
@@ -127,26 +32,53 @@ for x in lines:
     x=x.split(',')
     if int(x[10])<2004 or int(x[10])>2009:
         continue
-    temp.append(checksurvival(check(x[107])))
-    temp.append(checkage(check(x[6])))
-    temp.append(checkgrade(check(x[17])))
-    temp.append(checkradseq(check(x[135])))
-    temp.append(noofprimaries(check(x[131])))
-    temp.append(check(x[128]))
-    temp.append(check(x[129]))
-    temp.append(check(x[130]))
-    temp.append(checkrad(check(x[133])))
-    temp.append(checkstage(check(x[113])))
-    temp.append(check(x[11][-1]))
-    temp.append(check(x[82]))
-    temp.append(checkseq(check(x[8])))
-    temp.append(checklymph(check(x[35]))[0])
-    temp.append(checkhistology(check(x[71])))
-    temp.append(checkrxsumm(check(x[55])))
-    temp.append(checkrxlunsur(check(x[54])))
-    temp.append(checkderivedss(check(x[48])))
-    temp.append(checktumour(check(x[20])))
-    #temp.append(checksurvival(check(x[107])))
+    if int(x[6])==999:
+        continue
+    if int(x[6])==9:
+        continue
+    if int(x[135])==9:
+        continue
+    if int(x[131])==99:
+        continue
+    if int(x[133])==9:
+        continue
+    if int(x[47])==99:
+        continue
+    if int(x[8])==99 | int(x[8])==88:
+        continue
+    if int(x[35]==999):
+        continue
+    if int(x[71]==98):
+        continue
+    if int(x[55])==99:
+        continue
+    if int(x[54])==9:
+        continue
+    if int(x[48])==9:
+        continue
+    if int(x[33])==999 | int(x[3]==888:
+        continue
+    if int(x[107])=9999:
+        continue
+    temp.append(x[107])
+    temp.append(x[6])
+    temp.append(x[17])
+    temp.append(x[135])
+    temp.append(x[131])
+    temp.append(x[128])
+    temp.append(x[129])
+    temp.append(x[130])
+    temp.append(x[133])
+    temp.append(x[47])
+    temp.append(x[11][1:])
+    temp.append(x[82])
+    temp.append(x[8]))
+    temp.append(x[35])
+    temp.append(x[71])
+    temp.append(x[55])
+    temp.append(x[54])
+    temp.append(x[48])
+    temp.append(x[33])
     temp=','.join(temp) + '\n'
     f1.write(temp)
 
