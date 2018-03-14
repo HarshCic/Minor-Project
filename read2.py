@@ -56,9 +56,9 @@ for x in lines:
         continue
     if int(x[48])==9:
         continue
-    if int(x[33])==999 | int(x[3]==888:
+    if int(x[33])==999 or int(x[3])==888:
         continue
-    if int(x[107])=9999:
+    if int(x[107])==9999:
         continue
     temp.append(x[107])
     temp.append(x[6])
@@ -72,7 +72,7 @@ for x in lines:
     temp.append(x[47])
     temp.append(x[11][1:])
     temp.append(x[82])
-    temp.append(x[8]))
+    temp.append(x[8])
     temp.append(x[35])
     temp.append(x[71])
     temp.append(x[55])
