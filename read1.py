@@ -1,4 +1,4 @@
-f1=open('data2.csv','wb')
+f1=open('data.csv','wb')
 f1.write('Patient ID number,Registry ID,Marital Status at DX,Race/Ethnicity,NHIA Derived Hispanic Origin,Sex,Age at diagnosis,Year of Birth,'+
          'Sequence Number-Central,Month of diagnosis,Year of diagnosis,Primary Site,Laterality,Histology (92-00) ICD-O-2,Behavior (92-00) ICD-O-2,'+
          'Histologic Type ICD-O-3,Behavior Code ICD-O-3,Grade,Diagnostic Confirmation,Type of Reporting Source,EOD-Tumor Size,EOD-Extension,EOD-Extension Prost Path,'+

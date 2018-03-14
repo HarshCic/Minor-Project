@@ -69,8 +69,9 @@ XX = np.append(XX, x_scale, 1)
 # set up initial thetas to 0
 theta = np.zeros(shape=(n + 1, 1))
 # define number of iterations and alpha
-iterations = 7000
+iterations = 15000
 alpha = 0.0001
+
 # calculate theta using gradient descent
 theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
 #print(theta)
@@ -108,11 +109,11 @@ while test !=1000:
     death_rate = np.array(temp).dot(theta)
     listd.append(round(death_rate, 2))
     listsd.append(round(death_rate,2)-round(Y[test],2))
-    print round(death_rate,2),Y[test]
+    #print round(death_rate,2),Y[test]
     sumd+=round(death_rate,2)
 
     #print len(mean_r), len(std_r)
     test+=1
 listd=np.array(listd)
 print "Mean of the predictions : ",np.mean(listd)
-print "Standard deviation : ",np.std(listd,ddof=1)
+print "Standard deviation : ",np.std(listsd,ddof=1)

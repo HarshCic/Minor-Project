@@ -11,6 +11,10 @@ svr=SVR(kernel='poly',C=1e3,degree=5)
 svr.fit(X,Y)
 
 y_pred=svr.predict(X)
-
+list=[]
 for i in range(50):
-    print Y[i],y_pred[i]
+    print Y[i],y_pred[i],i
+    list.append(y_pred[i]-Y[i])
+
+print "Mean of predictions : ",np.mean(y_pred)
+print "Standard deviation : ",np.std(list,ddof=1)
