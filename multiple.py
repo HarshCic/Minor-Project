@@ -69,8 +69,8 @@ XX = np.append(XX, x_scale, 1)
 # set up initial thetas to 0
 theta = np.zeros(shape=(n + 1, 1))
 # define number of iterations and alpha
-iterations = 15000
-alpha = 0.0001
+iterations = 10000
+alpha = 0.01
 
 # calculate theta using gradient descent
 theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
@@ -96,7 +96,7 @@ while test !=1000:
     if test ==-1:
         break
     index=test
-    f = open('datamultiple.csv', 'r')
+    f = open('2004_2009.csv', 'r')
     data=f.readlines()[index-1].split(",")
 
     #print data,len(data)

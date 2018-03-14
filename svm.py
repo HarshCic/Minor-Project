@@ -1,13 +1,13 @@
 from sklearn.svm import SVR
 import numpy as np
 
-filename = '2004_2009.csv'
+filename = '2004_2009s.csv'
 
 puredata = np.loadtxt(filename, delimiter=',')
 X = puredata[:, 1:]
 Y = puredata[:, 0]
 
-svr=SVR(kernel='poly',C=1e3,degree=5)
+svr=SVR(kernel='poly',C=1e3,degree=3)
 svr.fit(X,Y)
 
 y_pred=svr.predict(X)
