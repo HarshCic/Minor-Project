@@ -58,7 +58,13 @@ def checkstage(n):
 
 def checkrxsumm(n):
     if '99' in n:
-        return 0
+        return str(0)
+    else:
+        return n
+
+def checkrxlunsur(n):
+    if '9' in n:
+        return str(0)
     else:
         return n
 
@@ -73,6 +79,8 @@ def checktumour(n):
 def checkseq(n):
     if '99' in n:
         return str(0)
+    elif '88' in n:
+        return str(0)
     else:
         return n
 
@@ -82,26 +90,52 @@ def checkhistology(n):
     else:
         return n
 
-f1=open('datamultiple.csv','wb')
+def checkgrade(n):
+    if '9' in n:
+        return str(0)
+    else:
+        return n
+
+def checkradseq(n):
+    if '9' in n:
+        return str(0)
+    else:
+        return n
+
+def checkrad(n):
+    if '9' in n:
+        return str(0)
+    else:
+        return n
+
+def checkderivedss(n):
+    if '9' in n:
+        return str(0)
+    else:
+        return n
+
+f1=open('2004_2009.csv','wb')
 f2=open('data2.csv','r')
 lines=f2.readlines()[1:]
 
 tmp=0
 for x in lines:
-    if tmp==8000:
+    if tmp==1000:
         break
     tmp+=1
     temp=[]
     x=x.split(',')
+    if int(x[10])<2004 or int(x[10])>2009:
+        continue
     temp.append(checksurvival(check(x[107])))
     temp.append(checkage(check(x[6])))
-    temp.append(check(x[17]))
-    temp.append(check(x[135]))
+    temp.append(checkgrade(check(x[17])))
+    temp.append(checkradseq(check(x[135])))
     temp.append(noofprimaries(check(x[131])))
     temp.append(check(x[128]))
     temp.append(check(x[129]))
     temp.append(check(x[130]))
-    temp.append(check(x[133]))
+    temp.append(checkrad(check(x[133])))
     temp.append(checkstage(check(x[113])))
     temp.append(check(x[11][-1]))
     temp.append(check(x[82]))
@@ -109,8 +143,8 @@ for x in lines:
     temp.append(checklymph(check(x[35]))[0])
     temp.append(checkhistology(check(x[71])))
     temp.append(checkrxsumm(check(x[55])))
-    temp.append(check(x[54]))
-    temp.append(check(x[48]))
+    temp.append(checkrxlunsur(check(x[54])))
+    temp.append(checkderivedss(check(x[48])))
     temp.append(checktumour(check(x[20])))
     #temp.append(checksurvival(check(x[107])))
     temp=','.join(temp) + '\n'

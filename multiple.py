@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-filename = 'datamultiple.csv'
+filename = '2004_2009.csv'
 
 puredata = np.loadtxt(filename, delimiter=',')
 X = puredata[:, 1:]
@@ -18,6 +18,8 @@ def normalization(x):
         m = np.mean(x[:, i])
         s = np.std(x[:, i])
         mean_x.append(m)
+        if s==0.0:
+            s=1.0
         std_x.append(s)
         X_normalized[:, i] = (X_normalized[:, i] - m) / s
     return X_normalized, mean_x, std_x
@@ -67,7 +69,7 @@ XX = np.append(XX, x_scale, 1)
 # set up initial thetas to 0
 theta = np.zeros(shape=(n + 1, 1))
 # define number of iterations and alpha
-iterations = 10000
+iterations = 7000
 alpha = 0.0001
 # calculate theta using gradient descent
 theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
@@ -80,11 +82,13 @@ plt.grid(True)
 plt.xlabel('Iterations')
 plt.ylabel('Cost')
 plt.title('Cost function convergence')
-plt.show()
+#plt.show()
 
 # test hyphothesis with some values
 test=0
 listd=[]
+listsd=[]
+sumd=0.0
 while test !=1000:
     #index=int(raw_input("give index value: "))
     #test=index
@@ -102,11 +106,13 @@ while test !=1000:
         temp.append((float(data[i+1].split('\n')[0])-mean_r[i])/std_r[i])
 
     death_rate = np.array(temp).dot(theta)
-    listd.append(round(death_rate,2))
+    listd.append(round(death_rate, 2))
+    listsd.append(round(death_rate,2)-round(Y[test],2))
     print round(death_rate,2),Y[test]
+    sumd+=round(death_rate,2)
 
     #print len(mean_r), len(std_r)
     test+=1
 listd=np.array(listd)
 print "Mean of the predictions : ",np.mean(listd)
-print "Standard deviation : ",np.std(listd)
+print "Standard deviation : ",np.std(listd,ddof=1)
