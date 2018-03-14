@@ -18,7 +18,7 @@ f1.write('Patient ID number,Registry ID,Marital Status at DX,Race/Ethnicity,NHIA
          'N value - based on AJCC 3rd (1988-2003),M value - based on AJCC 3rd (1988-2003),Total Number of In Situ/malignant Tumors for Patient,Total Number of Benign/Borderline Tumors for Patient,Radiation Recode,Radiation to Brain or CNS Recode (1988-1997),RX Summ-Surg/Rad Seq,Chemotherapy recode (Yes No/Unk)'+'\n')
 
 
-with open('RESPIR2.TXT','r') as f:
+with open('RESPIR.TXT','r') as f:
     i=0
     for line in f.readlines():
         temp=""
