@@ -125,7 +125,7 @@ lines=f2.readlines()[1:]
 
 tmp=0
 for x in lines:
-    if tmp==10000:
+    if tmp==1000:
         break
     temp=[]
     x=x.split(',')
@@ -138,9 +138,9 @@ for x in lines:
     temp.append(checkgrade(check(x[17])))
     temp.append(checkradseq(check(x[135])))
     temp.append(noofprimaries(check(x[131])))
-    temp.append(check(x[128]))
-    temp.append(check(x[129]))
-    temp.append(check(x[130]))
+    temp.append(check(x[44]))
+    temp.append(check(x[45]))
+    temp.append(check(x[46]))
     temp.append(checkrad(check(x[133])))
     temp.append(checkstage(check(x[47])))
     temp.append(check(x[11][-1]))
@@ -148,14 +148,11 @@ for x in lines:
     temp.append(checkseq(check(x[8])))
     temp.append(checklymph(check(x[35]))[0])
     temp.append(checkhistology(check(x[71])))
-    temp.append(checkrxsumm(check(x[55])))
-    temp.append(checkrxlunsur(check(x[54])))
+    temp.append(checkrxlunsur(check(x[55])))
+    temp.append(checkrxsumm(check(x[54])))
     temp.append(checkderivedss(check(x[48])))
     temp.append(checktumour(check(x[33])))
     #temp.append(checksurvival(check(x[107])))
     temp=','.join(temp) + '\n'
     f1.write(temp)
     tmp+=1
-
-
-

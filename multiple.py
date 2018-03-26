@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_squared_error
+from math import sqrt
 
 filename = '2004_2009.csv'
 
@@ -69,8 +71,8 @@ XX = np.append(XX, x_scale, 1)
 # set up initial thetas to 0
 theta = np.zeros(shape=(n + 1, 1))
 # define number of iterations and alpha
-iterations = 10000
-alpha = 0.01
+iterations = 7000
+alpha = 0.001
 
 # calculate theta using gradient descent
 theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
@@ -83,11 +85,12 @@ plt.grid(True)
 plt.xlabel('Iterations')
 plt.ylabel('Cost')
 plt.title('Cost function convergence')
-#plt.show()
+plt.show()
 
 # test hyphothesis with some values
 test=0
 listd=[]
+act=[]
 listsd=[]
 sumd=0.0
 while test !=1000:
@@ -108,6 +111,7 @@ while test !=1000:
 
     death_rate = np.array(temp).dot(theta)
     listd.append(round(death_rate, 2))
+    act.append(Y[test])
     listsd.append(round(death_rate,2)-round(Y[test],2))
     #print round(death_rate,2),Y[test]
     sumd+=round(death_rate,2)
@@ -116,4 +120,14 @@ while test !=1000:
     test+=1
 listd=np.array(listd)
 print "Mean of the predictions : ",np.mean(listd)
-print "Standard deviation : ",np.std(listsd,ddof=1)
+print "Standard deviation of residuals: ",np.std(listsd,ddof=1)
+print "Standard deviation : ",np.std(listd,ddof=1)
+rms=sqrt(mean_squared_error(act,listd))
+print "RMSE : ",rms
+
+
+plt.plot(listd,act,'ro')
+plt.grid(True)
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
