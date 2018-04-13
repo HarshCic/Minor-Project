@@ -79,25 +79,25 @@ theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
 #print(theta)
 #print(Y[1, :])
 # print(J_log)
-fig = plt.figure('Cost function convergence')
-plt.plot(J_theta_log)
-plt.grid(True)
-plt.xlabel('Iterations')
-plt.ylabel('Cost')
-plt.title('Cost function convergence')
-plt.show()
+#fig = plt.figure('Cost function convergence')
+#plt.plot(J_theta_log)
+#plt.grid(True)
+#plt.xlabel('Iterations')
+#plt.ylabel('Cost')
+#plt.title('Cost function convergence')
+#plt.show()
 
-# test hyphothesis with some values
+#test hyphothesis with some values
 test=0
 listd=[]
 act=[]
 listsd=[]
 sumd=0.0
-while test !=1000:
+print len(X)
+for test in range(len(X)):
+    #print test
     #index=int(raw_input("give index value: "))
     #test=index
-    if test ==-1:
-        break
     index=test
     f = open('2004_2009.csv', 'r')
     data=f.readlines()[index-1].split(",")
@@ -126,8 +126,8 @@ rms=sqrt(mean_squared_error(act,listd))
 print "RMSE : ",rms
 
 
-plt.plot(listd,act,'ro')
-plt.grid(True)
-plt.xlabel('Predicted')
-plt.ylabel('Actual')
-plt.show()
+#plt.plot(listd,act,'ro')
+#plt.grid(True)
+#plt.xlabel('Predicted')
+#plt.ylabel('Actual')
+#plt.show()

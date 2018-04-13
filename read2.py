@@ -114,7 +114,7 @@ def checkderivedss(n):
     else:
         return n
 
-f1=open('2004_2009.csv','wb')
+f1=open('2004_2009f.csv','wb')
 
 #f1.write('age,grade,rediation sequence with surgery,number of primaries,T,N,M,Radiation,stage,Primary Site'+
 #         'First Malignant Primary Indicator,Sequence Number,CS Lymphnodes,Histology Recode-Broad Groupings'+
@@ -125,8 +125,8 @@ lines=f2.readlines()[1:]
 
 tmp=0
 for x in lines:
-    if tmp==1000:
-        break
+    #if tmp==1000:
+    #    break
     temp=[]
     x=x.split(',')
     if int(x[10])<2004 or int(x[10])>2009:
