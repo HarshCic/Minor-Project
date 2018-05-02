@@ -149,6 +149,7 @@ final=np.array(final)
 
 print "Mean of the predictions : ",np.mean(final)
 #print "Standard deviation of residuals: ",np.std(listsd,ddof=1)
+#unbiased estimator of the variance of the infinite population
 print "Standard deviation : ",np.std(final,ddof=1)
 #rms=sqrt(mean_squared_error(act,final))
 #print "RMSE : ",rms
