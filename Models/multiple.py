@@ -3,13 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 from math import sqrt
+from sklearn.cross_validation import train_test_split
 
-filename = '2004_2009.csv'
+filename = '2004_2009f.csv'
 
 puredata = np.loadtxt(filename, delimiter=',')
 X = puredata[:, 1:]
 Y = puredata[:, 0]
 
+X_train, X_test, Y_train, Y_test=train_test_split(X,Y)
 
 def normalization(x):
     mean_x = []
@@ -58,11 +60,11 @@ def gradient_descent(x, y, theta, alpha, iterations):
     return theta, J_theta_log
 
 
-m, n = np.shape(X)
+m, n = np.shape(X_train)
 
-Y.shape = (m, 1)
+Y_train.shape = (m, 1)
 
-x_scale, mean_r, std_r = normalization(X)
+x_scale, mean_r, std_r = normalization(X_train)
 
 # Add a column of ones to X as x0=1
 XX = np.ones(shape=(m, 1))
@@ -75,7 +77,7 @@ iterations = 7000
 alpha = 0.001
 
 # calculate theta using gradient descent
-theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
+theta, J_theta_log = gradient_descent(XX, Y_train, theta, alpha, iterations)
 #print(theta)
 #print(Y[1, :])
 # print(J_log)
@@ -88,41 +90,26 @@ theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
 #plt.show()
 
 #test hyphothesis with some values
-test=0
-listd=[]
-act=[]
-listsd=[]
-sumd=0.0
-print len(X)
-for test in range(len(X)):
-    #print test
-    #index=int(raw_input("give index value: "))
-    #test=index
-    index=test
-    f = open('2004_2009.csv', 'r')
-    data=f.readlines()[index-1].split(",")
-
-    #print data,len(data)
-    temp=[]
+test = 0
+listd = []
+act = []
+listsd = []
+sumd = 0.0
+for test in range(len(X_test)):
+    index = test
+    temp = []
     temp.append(1.0)
-
-    for i in range(len(data)-1):
-        temp.append((float(data[i+1].split('\n')[0])-mean_r[i])/std_r[i])
-
+    for i in range(len(X_test[test])):
+        temp.append((float(X_test[test][i] - mean_r[i]) / std_r[i]))
     death_rate = np.array(temp).dot(theta)
     listd.append(round(death_rate, 2))
-    act.append(Y[test])
-    listsd.append(round(death_rate,2)-round(Y[test],2))
-    #print round(death_rate,2),Y[test]
-    sumd+=round(death_rate,2)
-
-    #print len(mean_r), len(std_r)
-    test+=1
-listd=np.array(listd)
+    listsd.append(round(Y_test[test]-death_rate,3))
+    test += 1
+listd = np.array(listd)
 print "Mean of the predictions : ",np.mean(listd)
 print "Standard deviation of residuals: ",np.std(listsd,ddof=1)
 print "Standard deviation : ",np.std(listd,ddof=1)
-rms=sqrt(mean_squared_error(act,listd))
+rms=sqrt(mean_squared_error(Y_test,listd))
 print "RMSE : ",rms
 
 
