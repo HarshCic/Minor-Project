@@ -5,6 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 from sklearn.metrics import mean_squared_error
 from math import sqrt
+from sklearn.cross_validation import train_test_split
 
 filename = '2004_2009f.csv'
 
@@ -12,7 +13,7 @@ puredata = np.loadtxt(filename, delimiter=',')
 X = puredata[:, 1:]
 Y = puredata[:, 0]
 
-
+X_train, X_test, Y_train, Y_test=train_test_split(X,Y)
 
 
 def normalization(x):
@@ -75,30 +76,30 @@ clf3 = RandomForestRegressor(max_depth=5, random_state=0)
 
 clf4=SVR()
 
-clf1.fit(X,Y)
+clf1.fit(X_train,Y_train)
 
-clf2.fit(X,Y)
+clf2.fit(X_train,Y_train)
 
-clf3.fit(X,Y)
+clf3.fit(X_train,Y_train)
 
-clf4.fit(X,Y)
+clf4.fit(X_train,Y_train)
 
-ypred1=clf1.predict(X)
+ypred1=clf1.predict(X_test)
 
-ypred2=clf2.predict(X)
+ypred2=clf2.predict(X_test)
 
-ypred3=clf3.predict(X)
+ypred3=clf3.predict(X_test)
 
-ypred4=clf4.predict(X)
-
-
+ypred4=clf4.predict(X_test)
 
 
-m, n = np.shape(X)
 
-Y.shape = (m, 1)
 
-x_scale, mean_r, std_r = normalization(X)
+m, n = np.shape(X_train)
+
+Y_train.shape = (m, 1)
+
+x_scale, mean_r, std_r = normalization(X_train)
 
 # Add a column of ones to X as x0=1
 XX = np.ones(shape=(m, 1))
@@ -110,22 +111,20 @@ theta = np.zeros(shape=(n + 1, 1))
 iterations = 7000
 alpha = 0.001
 
-theta, J_theta_log = gradient_descent(XX, Y, theta, alpha, iterations)
+theta, J_theta_log = gradient_descent(XX, Y_train, theta, alpha, iterations)
 test=0
 listd=[]
 act=[]
 listsd=[]
 sumd=0.0
-for test in range(len(X)):
+for test in range(len(X_test)):
     index=test
-    f = open('2004_2009f.csv', 'r')
-    data=f.readlines()[index-1].split(",")
 
     temp=[]
     temp.append(1.0)
 
-    for i in range(len(data)-1):
-        temp.append((float(data[i+1].split('\n')[0])-mean_r[i])/std_r[i])
+    for i in range(len(X_test[test])-1):
+        temp.append((float(X_test[test][i]-mean_r[i])/std_r[i]))
 
     death_rate = np.array(temp).dot(theta)
     listd.append(round(death_rate, 2))
